@@ -1,0 +1,12 @@
+.header-section {
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2225;
+  color: #eeeeee;
+}
+
+h1 {
+  font-family: sans-serif;
+}
