@@ -1,5 +1,5 @@
 .header-section {
-  height: 4.5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,5 +8,6 @@
 }
 
 h1 {
-  font-family: sans-serif;
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 500;
 }
