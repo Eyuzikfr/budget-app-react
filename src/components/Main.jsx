@@ -4,39 +4,61 @@ import Popup from "./Popup";
 export default function Main() {
   const [incomePopup, setIncomePopup] = useState(false);
   const [expenPopup, setExpenPopup] = useState(false);
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalExpenditure, setTotalExpenditure] = useState(0);
 
-  const togglePopup = (type) => {
+  // function to show popup
+  const showPopup = (type) => {
     if (type === "income") {
-      setIncomePopup((prevState) => !prevState);
+      setIncomePopup(true);
       setExpenPopup(false);
     } else if (type === "expenditure") {
-      setExpenPopup((prevState) => !prevState);
+      setExpenPopup(true);
       setIncomePopup(false);
     }
   };
 
+  // function to close popup
   const closePopup = () => {
     setIncomePopup(false);
     setExpenPopup(false);
   };
 
+  // function to add income
+  const addIncome = (newIncome) => {
+    setTotalIncome((prevIncome) => prevIncome + newIncome);
+  };
+
   return (
-    <div className="add-income-expense">
-      <button className="add-income-btn" onClick={() => togglePopup("income")}>
-        Add Income
-      </button>
-      {incomePopup ? (
-        <Popup type="income" onCloseBtnClick={closePopup} />
-      ) : null}
-      <button
-        className="add-expenditure-btn"
-        onClick={() => togglePopup("expenditure")}
-      >
-        Add Expenditure
-      </button>
-      {expenPopup ? (
-        <Popup type="expenditure" onCloseBtnClick={closePopup} />
-      ) : null}
-    </div>
+    <>
+      {/* Add Records */}
+      <div className="add-income-expense">
+        <button className="add-income-btn" onClick={() => showPopup("income")}>
+          Add Income
+        </button>
+        {incomePopup ? (
+          <Popup
+            type="income"
+            onCloseBtnClick={closePopup}
+            onAddIncomeClick={() => addIncome(100)}
+          />
+        ) : null}
+        <button
+          className="add-expenditure-btn"
+          onClick={() => showPopup("expenditure")}
+        >
+          Add Expenditure
+        </button>
+        {expenPopup ? (
+          <Popup type="expenditure" onCloseBtnClick={closePopup} />
+        ) : null}
+      </div>
+
+      {/* Display Records */}
+      <div className="income-expense-display">
+        <h2 className="show-income">Income: {totalIncome}</h2>
+        <h2 className="show-expenditure">Expenditure: {totalExpenditure}</h2>
+      </div>
+    </>
   );
 }

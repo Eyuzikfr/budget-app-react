@@ -1,6 +1,9 @@
 import "./../css/Popup.css";
+import IncomeForm from "./IncomeForm";
+import ExpenditureForm from "./ExpenditureForm.jsx";
 
 export default function Popup(props) {
+  // render the income form
   if (props.type === "income") {
     return (
       <div className="disable-background">
@@ -8,18 +11,20 @@ export default function Popup(props) {
           <button className="close-btn" onClick={props.onCloseBtnClick}>
             X
           </button>
-          <h1>income form!</h1>
+          <IncomeForm onAddIncomeClick={() => props.onAddIncomeClick(100)} />
         </div>
       </div>
     );
-  } else if (props.type === "expenditure") {
+  }
+  // render the expenditure form
+  else if (props.type === "expenditure") {
     return (
       <div className="disable-background">
         <div className="expenditure-popup popup-container">
           <button className="close-btn" onClick={props.onCloseBtnClick}>
             X
           </button>
-          <h1>expenditure form!</h1>
+          <ExpenditureForm />
         </div>
       </div>
     );
