@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "./Popup";
 
 export default function Main() {
@@ -6,6 +6,9 @@ export default function Main() {
   const [expenPopup, setExpenPopup] = useState(false);
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalExpenditure, setTotalExpenditure] = useState(0);
+  const [incomeData, setIncomeData] = useState({
+    amount: 0,
+  });
 
   // function to show popup
   const showPopup = (type) => {
@@ -25,9 +28,10 @@ export default function Main() {
   };
 
   // function to add income
-  const addIncome = (newIncome) => {
-    setTotalIncome((prevIncome) => prevIncome + newIncome);
-  };
+  useEffect(() => {
+    console.log(incomeData.title, incomeData.type);
+    setTotalIncome((prevIncome) => prevIncome + incomeData.amount);
+  }, [incomeData]);
 
   return (
     <>
@@ -39,8 +43,9 @@ export default function Main() {
         {incomePopup ? (
           <Popup
             type="income"
+            incomeData={incomeData}
+            setIncomeData={setIncomeData}
             onCloseBtnClick={closePopup}
-            onAddIncomeClick={() => addIncome(100)}
           />
         ) : null}
         <button

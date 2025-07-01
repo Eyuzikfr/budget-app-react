@@ -1,13 +1,61 @@
+import { useState } from "react";
+import "./../css/IncomeForm.css";
+
 export default function IncomeForm(props) {
+  const [title_, setTitle] = useState("Untitled");
+  const [type_, setType] = useState("");
+  const [amount_, setAmount] = useState("");
+
   // handle add income click function
-  const handleAddIncome = (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
-    props.onAddIncomeClick(100);
+
+    props.setIncomeData(() => {
+      return {
+        title: title_,
+        type: type_,
+        amount: parseFloat(amount_),
+      };
+    });
+
+    props.onCloseBtnClick();
   };
   return (
-    <form action="POST">
-      <h1>Add Income</h1>
-      <button className="add-income" onClick={handleAddIncome}>
+    <form onSubmit={submitForm}>
+      <h2>Add Income Record</h2>
+      <div className="form-fields">
+        <input
+          className="field"
+          type="text"
+          name="income-title"
+          placeholder="Enter Title"
+          value={title_}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <select
+          className="field"
+          value={type_}
+          name="income-type"
+          id="income-type"
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="" defaultChecked disabled>
+            Select Income Type
+          </option>
+          <option value="salary">Salary</option>
+          <option value="gift">Gift</option>
+          <option value="allowance">Allowance</option>
+        </select>
+        <input
+          className="field"
+          value={amount_}
+          type="number"
+          placeholder="Enter Amount"
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
+      </div>
+      <button className="add-income" type="submit">
         Add
       </button>
     </form>

@@ -11,7 +11,11 @@ export default function Popup(props) {
           <button className="close-btn" onClick={props.onCloseBtnClick}>
             X
           </button>
-          <IncomeForm onAddIncomeClick={() => props.onAddIncomeClick(100)} />
+          <IncomeForm
+            incomeData={props.incomeData}
+            setIncomeData={props.setIncomeData}
+            onCloseBtnClick={props.onCloseBtnClick}
+          />
         </div>
       </div>
     );
