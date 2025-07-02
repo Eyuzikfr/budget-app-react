@@ -9,6 +9,9 @@ export default function Main() {
   const [incomeData, setIncomeData] = useState({
     amount: 0,
   });
+  const [expenditureData, setExpenditureData] = useState({
+    amount: 0,
+  });
 
   // function to show popup
   const showPopup = (type) => {
@@ -29,9 +32,15 @@ export default function Main() {
 
   // function to add income
   useEffect(() => {
-    console.log(incomeData.title, incomeData.type);
+    // console.log(incomeData.title, incomeData.type);
     setTotalIncome((prevIncome) => prevIncome + incomeData.amount);
   }, [incomeData]);
+
+  // function to add expenditure
+  useEffect(() => {
+    // console.log(expenditureData.title, expenditureData.type);
+    setTotalExpenditure((prevExpen) => prevExpen + expenditureData.amount);
+  }, [expenditureData]);
 
   return (
     <>
@@ -55,7 +64,12 @@ export default function Main() {
           Add Expenditure
         </button>
         {expenPopup ? (
-          <Popup type="expenditure" onCloseBtnClick={closePopup} />
+          <Popup
+            type="expenditure"
+            expenditureData={expenditureData}
+            setExpenditureData={setExpenditureData}
+            onCloseBtnClick={closePopup}
+          />
         ) : null}
       </div>
 

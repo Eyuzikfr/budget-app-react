@@ -2,8 +2,11 @@ import { useState } from "react";
 import "./../css/IncomeForm.css";
 
 export default function IncomeForm(props) {
+  const today = new Date().toISOString().split("T")[0];
+
   const [title_, setTitle] = useState("Untitled");
   const [type_, setType] = useState("");
+  const [date_, setDate] = useState(today);
   const [amount_, setAmount] = useState("");
 
   // handle add income click function
@@ -47,6 +50,13 @@ export default function IncomeForm(props) {
           <option value="allowance">Allowance</option>
         </select>
         <input
+          type="date"
+          defaultValue={date_}
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
+        <input
           className="field"
           value={amount_}
           type="number"
@@ -56,7 +66,7 @@ export default function IncomeForm(props) {
         />
       </div>
       <button className="add-income" type="submit">
-        Add
+        Add Record
       </button>
     </form>
   );

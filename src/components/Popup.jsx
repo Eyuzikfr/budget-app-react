@@ -28,7 +28,11 @@ export default function Popup(props) {
           <button className="close-btn" onClick={props.onCloseBtnClick}>
             X
           </button>
-          <ExpenditureForm />
+          <ExpenditureForm
+            expenditureData={props.expenditureData}
+            setExpenditureData={props.setExpenditureData}
+            onCloseBtnClick={props.onCloseBtnClick}
+          />
         </div>
       </div>
     );
