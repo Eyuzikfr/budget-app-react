@@ -65,7 +65,9 @@ export default function IncomeForm(props) {
         <input
           className="field"
           value={amount_}
-          type="number"
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
           placeholder="Enter Amount"
           onChange={(e) => setAmount(e.target.value)}
           required
