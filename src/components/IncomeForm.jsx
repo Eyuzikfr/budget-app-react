@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./../css/IncomeForm.css";
+import "./../css/Forms.css";
 
 export default function IncomeForm(props) {
   const today = new Date().toISOString().split("T")[0];
@@ -24,7 +24,7 @@ export default function IncomeForm(props) {
     props.onCloseBtnClick();
   };
   return (
-    <form onSubmit={submitForm}>
+    <form className="form income-form" onSubmit={submitForm}>
       <h2>Add Income Record</h2>
       <div className="form-fields">
         <input
@@ -51,6 +51,7 @@ export default function IncomeForm(props) {
         </select>
         <input
           type="date"
+          className="date-input"
           defaultValue={date_}
           onChange={(e) => {
             setDate(e.target.value);
@@ -67,7 +68,7 @@ export default function IncomeForm(props) {
           required
         />
       </div>
-      <button className="add-income" type="submit">
+      <button className="submit-income-btn btn-green" type="submit">
         Add Record
       </button>
     </form>

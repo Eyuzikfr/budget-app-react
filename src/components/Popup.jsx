@@ -8,7 +8,7 @@ export default function Popup(props) {
     return (
       <div className="disable-background">
         <div className="income-popup popup-container">
-          <button className="close-btn" onClick={props.onCloseBtnClick}>
+          <button className="close-btn btn-red" onClick={props.onCloseBtnClick}>
             X
           </button>
           <IncomeForm
@@ -25,7 +25,7 @@ export default function Popup(props) {
     return (
       <div className="disable-background">
         <div className="expenditure-popup popup-container">
-          <button className="close-btn" onClick={props.onCloseBtnClick}>
+          <button className="close-btn btn-red" onClick={props.onCloseBtnClick}>
             X
           </button>
           <ExpenditureForm

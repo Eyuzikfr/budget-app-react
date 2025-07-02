@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "./../css/Forms.css";
 
-export default function IncomeForm(props) {
+export default function ExpenditureForm(props) {
   const today = new Date().toISOString().split("T")[0];
 
   const [title_, setTitle] = useState("Untitled");
@@ -8,7 +9,7 @@ export default function IncomeForm(props) {
   const [date_, setDate] = useState(today);
   const [amount_, setAmount] = useState("");
 
-  // handle add income click function
+  // handle add expenditure click function
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -28,13 +29,13 @@ export default function IncomeForm(props) {
     props.onCloseBtnClick();
   };
   return (
-    <form onSubmit={submitForm}>
+    <form className="form expenditure-form" onSubmit={submitForm}>
       <h2>Add Expenditure Record</h2>
       <div className="form-fields">
         <input
           className="field"
           type="text"
-          name="income-title"
+          name="expenditure-title"
           placeholder="Enter Title"
           value={title_}
           onChange={(e) => setTitle(e.target.value)}
@@ -42,8 +43,8 @@ export default function IncomeForm(props) {
         <select
           className="field"
           value={type_}
-          name="income-type"
-          id="income-type"
+          name="expenditure-type"
+          id="expenditure-type"
           onChange={(e) => setType(e.target.value)}
         >
           <option value="" defaultChecked disabled>
@@ -57,6 +58,7 @@ export default function IncomeForm(props) {
         </select>
         <input
           type="date"
+          className="date-input"
           defaultValue={date_}
           onChange={(e) => {
             setDate(e.target.value);
@@ -73,7 +75,7 @@ export default function IncomeForm(props) {
           required
         />
       </div>
-      <button className="add-income" type="submit">
+      <button className="submit-expenditure-btn btn-green" type="submit">
         Add Record
       </button>
     </form>
