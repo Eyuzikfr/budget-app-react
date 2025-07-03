@@ -24,7 +24,7 @@ export default function IncomeForm(props) {
     "Sale",
     "Wage, Invoice",
   ];
-  const incomeTypesList = incomeTypes.map((type) => (
+  const incomeTypesList = incomeTypes.sort().map((type) => (
     <option
       key={type}
       className="income-type-option"

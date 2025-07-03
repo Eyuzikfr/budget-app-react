@@ -9,6 +9,26 @@ export default function ExpenditureForm(props) {
   const [date_, setDate] = useState(today);
   const [amount_, setAmount] = useState("");
 
+  // expenditure type options variable
+  const expenditureTypes = [
+    "Acitivity",
+    "Food and Drinks",
+    "Gifts",
+    "Groceries",
+    "Bills",
+    "Vehicle",
+    "Fuel",
+    "Communication/PC",
+    "Investments",
+    "Transportation",
+    "Loans/Interests",
+  ];
+  const expenditureTypesList = expenditureTypes.sort().map((type) => (
+    <option key={type} value={type.toLowerCase()}>
+      {type}
+    </option>
+  ));
+
   // handle add expenditure click function
   const submitForm = (e) => {
     e.preventDefault();
@@ -50,11 +70,7 @@ export default function ExpenditureForm(props) {
           <option value="" defaultChecked disabled>
             Select Expenditure Type
           </option>
-          <option value="food">Food</option>
-          <option value="bill">Bill</option>
-          <option value="fuel">Fuel</option>
-          <option value="hangout">Hangout</option>
-          <option value="acitivity">Activity</option>
+          {expenditureTypesList}
         </select>
         <input
           type="date"
