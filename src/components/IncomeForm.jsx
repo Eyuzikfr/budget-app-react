@@ -13,6 +13,10 @@ export default function IncomeForm(props) {
   const submitForm = (e) => {
     e.preventDefault();
 
+    if (type_ === "") {
+      alert("Please select an expenditure type.");
+      return;
+    }
     props.setIncomeData(() => {
       return {
         title: title_,
@@ -23,6 +27,7 @@ export default function IncomeForm(props) {
 
     props.onCloseBtnClick();
   };
+
   return (
     <form className="form income-form" onSubmit={submitForm}>
       <h2>Add Income Record</h2>

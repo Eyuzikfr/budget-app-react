@@ -12,6 +12,9 @@ export default function Main() {
   const [expenditureData, setExpenditureData] = useState({
     amount: 0,
   });
+  const [currentAmount, setCurrentAmount] = useState(
+    totalIncome - totalExpenditure
+  );
 
   // function to show popup
   const showPopup = (type) => {
@@ -41,6 +44,11 @@ export default function Main() {
     // console.log(expenditureData.title, expenditureData.type);
     setTotalExpenditure((prevExpen) => prevExpen + expenditureData.amount);
   }, [expenditureData]);
+
+  // update current when income or expenditure amount changes
+  useEffect(() => {
+    setCurrentAmount(totalIncome - totalExpenditure);
+  }, [totalIncome, totalExpenditure]);
 
   return (
     <>
@@ -77,6 +85,7 @@ export default function Main() {
       <div className="income-expense-display">
         <h2 className="show-income">Income: {totalIncome}</h2>
         <h2 className="show-expenditure">Expenditure: {totalExpenditure}</h2>
+        <h2 className="show-expenditure">Current: {currentAmount}</h2>
       </div>
     </>
   );
