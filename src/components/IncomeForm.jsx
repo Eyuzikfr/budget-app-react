@@ -9,12 +9,37 @@ export default function IncomeForm(props) {
   const [date_, setDate] = useState(today);
   const [amount_, setAmount] = useState("");
 
+  // income types option variable
+  const incomeTypes = [
+    "Allowance",
+    "Checks, Coupons",
+    "Child Support",
+    "Dues & Grants",
+    "Gifts",
+    "Interests, Dividends",
+    "Lending, Renting",
+    "Lottery, Gambling",
+    "Refunds",
+    "Rental Income",
+    "Sale",
+    "Wage, Invoice",
+  ];
+  const incomeTypesList = incomeTypes.map((type) => (
+    <option
+      key={type}
+      className="income-type-option"
+      value={type.toLowerCase()}
+    >
+      {type}
+    </option>
+  ));
+
   // handle add income click function
   const submitForm = (e) => {
     e.preventDefault();
 
     if (type_ === "") {
-      alert("Please select an expenditure type.");
+      alert("Please select an income type.");
       return;
     }
     props.setIncomeData(() => {
@@ -47,12 +72,10 @@ export default function IncomeForm(props) {
           id="income-type"
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="" defaultChecked disabled>
+          <option value="" disabled>
             Select Income Type
           </option>
-          <option value="salary">Salary</option>
-          <option value="gift">Gift</option>
-          <option value="allowance">Allowance</option>
+          {incomeTypesList}
         </select>
         <input
           type="date"
